@@ -1,0 +1,66 @@
+---
+title: Saving BumpyMatrices to file
+author:
+- name: Aaron Lun
+  email: infinite.monkeys.with.keyboards@gmail.com
+package: alabaster.bumpy 
+date: "Revised: September 26, 2022"
+output:
+  BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Saving and loading BumpyMatrices}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(error=FALSE, warning=FALSE, message=FALSE)
+library(BiocStyle)
+self <- Githubpkg("ArtifactDB/alabaster.bumpy")
+```
+
+# Overview
+
+The `BumpyMatrix` class provides a representation of complex ragged data structures - see the `r Biocpkg("BumpyMatrix")` package for more information.
+This is used to coerce immune repertoire, spatial transcriptomics and drug response data into a familiar 2D array for easy manipulation.
+The `r self` package allows users to save a `BumpyMatrix` to file within the [**alabaster** framework](https://github.com/ArtifactDB/alabaster.base).
+
+# Saving a `BumpyMatrix`
+
+Let's make a `BumpyMatrix` to demonstrate:
+
+```{r}
+library(BumpyMatrix)
+library(S4Vectors)
+df <- DataFrame(x=runif(100), y=runif(100))
+f <- factor(sample(letters[1:20], nrow(df), replace=TRUE), letters[1:20])
+mat <- BumpyMatrix(split(df, f), c(5, 4))
+```
+
+Saving it to file involves calling `stageObject`:
+
+```{r}
+library(alabaster.bumpy)
+
+tmp <- tempfile()
+dir.create(tmp)
+meta <- stageObject(mat, tmp, "bumpy")
+.writeMetadata(meta, tmp)
+
+list.files(file.path(tmp, "bumpy"), recursive=TRUE)
+```
+
+# Loading a `BumpyMatrix`
+
+The loading procedure is even simpler as the metadata of the saved `BumpyMatrix` remembers how it was saved.
+We can just use `alabaster.base::loadObject()` or related functions, and the R interface will automatically do the rest.
+
+```{r}
+loadObject(meta, tmp)
+```
+
+# Session info {-}
+
+```{r}
+sessionInfo()
+```

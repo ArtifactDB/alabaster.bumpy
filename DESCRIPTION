@@ -1,0 +1,28 @@
+Title: Save and Load BumpyMatrices to/from file
+Package: alabaster.bumpy
+Version: 0.98.0
+Date: 2022-09-25
+Authors@R: person("Aaron", "Lun", role=c("cre", "aut"), email="infinite.monkeys.with.keyboards@gmail.com")
+Description: 
+    Save BumpyMatrix objects into file artifacts, and load them back into memory.
+    This is a more portable alternative to serialization of such objects into RDS files.
+    Each artifact is associated with metadata for further interpretation;
+    downstream applications can enrich this metadata with context-specific properties.
+License: MIT + file LICENSE
+Depends:
+    BumpyMatrix,
+    alabaster.base
+Imports:
+    methods,
+    Matrix,
+    BiocGenerics,
+    S4Vectors,
+    IRanges
+Suggests:
+    BiocStyle,
+    rmarkdown,
+    knitr,
+    testthat,
+    jsonlite
+VignetteBuilder: knitr
+RoxygenNote: 7.2.1
