@@ -1,3 +1,3 @@
 library(testthat)
-library(artificer.bumpy)
-test_check("artificer.bumpy")
+library(alabaster.bumpy)
+test_check("alabaster.bumpy")
