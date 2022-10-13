@@ -42,10 +42,10 @@ loadBumpyDataFrameMatrix <- function(assay.info, project) {
     }
 
     dims <- assay.info$array$dimensions
-    if (dims[1] * dims[2] > nrow(groupings)) {
+    if (dims[[1]] * dims[[2]] > nrow(groupings)) {
         mat <- sparseMatrix(i=groupings$row, j=groupings$column, x=seq_len(nrow(groupings)), dims=dims, dimnames=dimnames)
     } else {
-        mat <- matrix(0L, dims[1], dims[2], dimnames=dimnames)
+        mat <- matrix(0L, dims[[1]], dims[[2]], dimnames=dimnames)
         mat[as.matrix(groupings[,c("row", "column")])] <- seq_len(nrow(groupings))
     }
 

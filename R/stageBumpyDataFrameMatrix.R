@@ -78,7 +78,7 @@ setMethod("stageObject", "BumpyDataFrameMatrix", function(x, dir, path, child=FA
         path=gpath,
         is_child=child,
         `array`=list(
-            dimensions=dim(x)
+            dimensions=as.list(dim(x))
         ),
         bumpy_matrix=meta,
         bumpy_data_frame_matrix=list(
