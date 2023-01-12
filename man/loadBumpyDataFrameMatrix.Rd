@@ -18,6 +18,24 @@ A \linkS4class{BumpyDataFrameMatrix} object.
 \description{
 Load a \linkS4class{BumpyDataFrameMatrix} object based on its metadata.
 }
+\examples{
+# Mocking up a BumpyMatrix.
+library(BumpyMatrix)
+library(S4Vectors)
+df <- DataFrame(x=runif(100), y=runif(100))
+f <- factor(sample(letters[1:20], nrow(df), replace=TRUE), letters[1:20])
+out <- S4Vectors::split(df, f)
+mat <- BumpyMatrix(out, c(5, 4))
+
+# Staging it:
+tmp <- tempfile()
+dir.create(tmp)
+meta <- stageObject(mat, tmp, "BUMPY")
+
+# Loading it:
+loadBumpyDataFrameMatrix(meta, tmp)
+
+}
 \author{
 Aaron Lun
 }

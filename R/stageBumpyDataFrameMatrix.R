@@ -10,6 +10,20 @@
 #' A named list of metadata, to be used by \code{\link{.writeMetadata}}.
 #'
 #' @author Aaron Lun
+#' @examples
+#' # Mocking up a BumpyMatrix.
+#' library(BumpyMatrix)
+#' library(S4Vectors)
+#' df <- DataFrame(x=runif(100), y=runif(100))
+#' f <- factor(sample(letters[1:20], nrow(df), replace=TRUE), letters[1:20])
+#' out <- S4Vectors::split(df, f)
+#' mat <- BumpyMatrix(out, c(5, 4))
+#'
+#' # Staging it:
+#' tmp <- tempfile()
+#' dir.create(tmp)
+#' meta <- stageObject(mat, tmp, "BUMPY")
+#' str(meta)
 #' 
 #' @seealso
 #' \code{\link{useBumpyHDF5}}, to control whether the concatenated data frame is saved as a CSV or HDF5 file.
