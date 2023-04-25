@@ -1,6 +1,6 @@
 Title: Save and Load BumpyMatrices to/from file
 Package: alabaster.bumpy
-Version: 0.99.1
+Version: 1.0.0
 Date: 2023-02-28
 Authors@R: person("Aaron", "Lun", role=c("cre", "aut"), email="infinite.monkeys.with.keyboards@gmail.com")
 Description: 
