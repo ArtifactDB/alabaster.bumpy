@@ -4,7 +4,7 @@ author:
 - name: Aaron Lun
   email: infinite.monkeys.with.keyboards@gmail.com
 package: alabaster.bumpy 
-date: "Revised: September 26, 2022"
+date: "Revised: January 1, 2024"
 output:
   BiocStyle::html_document
 vignette: >
@@ -37,26 +37,22 @@ f <- factor(sample(letters[1:20], nrow(df), replace=TRUE), letters[1:20])
 mat <- BumpyMatrix(split(df, f), c(5, 4))
 ```
 
-Saving it to file involves calling `stageObject`:
+Saving it to file involves calling `saveObject`:
 
 ```{r}
 library(alabaster.bumpy)
-
 tmp <- tempfile()
-dir.create(tmp)
-meta <- stageObject(mat, tmp, "bumpy")
-.writeMetadata(meta, tmp)
-
-list.files(file.path(tmp, "bumpy"), recursive=TRUE)
+saveObject(mat, tmp)
+list.files(tmp, recursive=TRUE)
 ```
 
 # Loading a `BumpyMatrix`
 
 The loading procedure is even simpler as the metadata of the saved `BumpyMatrix` remembers how it was saved.
-We can just use `alabaster.base::loadObject()` or related functions, and the R interface will automatically do the rest.
+We can just use `alabaster.base::readObject()` or related functions, and the R interface will automatically do the rest.
 
 ```{r}
-loadObject(meta, tmp)
+readObject(tmp)
 ```
 
 # Session info {-}

@@ -6,7 +6,7 @@ library(alabaster.base)
 library(S4Vectors)
 df <- DataFrame(x=runif(100), y=runif(100))
 f <- factor(sample(letters[1:20], nrow(df), replace=TRUE), letters[1:20])
-out <- S4Vectors::split(df, f)
+out <- S4Vectors::unname(S4Vectors::split(df, f))
 mat <- BumpyMatrix(out, c(5, 4))
 useBumpyHDF5(FALSE)
 
@@ -32,6 +32,11 @@ test_that("staging a BumpyDataFrameMatrix works as expected", {
 
     roundtrip <- loadBumpyDataFrameMatrix(meta, tmp)
     expect_equal(mat, roundtrip)
+
+    # Works in the new world.
+    tmp <- tempfile()
+    saveObject(mat, tmp)
+    expect_equal(readObject(tmp), mat)
 })
 
 test_that("staging a BumpyDataFrameMatrix with names works as expected", {
@@ -50,6 +55,11 @@ test_that("staging a BumpyDataFrameMatrix with names works as expected", {
 
     roundtrip <- loadBumpyDataFrameMatrix(meta, tmp)
     expect_equal(mat, roundtrip)
+
+    # Works in the new world.
+    tmp <- tempfile()
+    saveObject(mat, tmp)
+    expect_equal(readObject(tmp), mat)
 })
 
 test_that("staging a BumpyDataFrameMatrix with internal names works as expected", {
@@ -90,4 +100,9 @@ test_that("staging a sparse BumpyDataFrameMatrix works as expected", {
 
     roundtrip <- loadBumpyDataFrameMatrix(meta, tmp)
     expect_equal(smat, roundtrip)
+
+    # Works in the new world.
+    tmp <- tempfile()
+    saveObject(smat, tmp)
+    expect_equal(readObject(tmp), smat)
 })
