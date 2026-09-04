@@ -24,6 +24,7 @@ hdf5.env$use <- FALSE
 #' useBumpyHDF5(old)
 #' @export
 useBumpyHDF5 <- function(use) {
+    .Deprecated()
     previous <- hdf5.env$use
     if (!missing(use)) {
         hdf5.env$use <- use

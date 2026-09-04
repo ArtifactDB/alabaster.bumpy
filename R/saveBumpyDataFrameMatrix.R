@@ -32,7 +32,7 @@ setMethod("saveObject", "BumpyDataFrameMatrix", function(x, path, ...) {
 
     ud <- undim(x)
     tryCatch({
-        altSaveObject(unlist(ud, use.names=FALSE), path=file.path(path, "concatenated"), ...)
+        altSaveObject(unlist(ud, use.names = FALSE), path=file.path(path, "concatenated"), ...)
     }, error=function(e) {
         stop("failed to stage the underlying DataFrame in a ", class(x)[1], "\n  - ", e$message)
     })

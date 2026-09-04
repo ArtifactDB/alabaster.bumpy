@@ -9,9 +9,13 @@ import(alabaster.base)
 import(methods)
 import(rhdf5)
 importFrom(BiocGenerics,relist)
-importFrom(BumpyMatrix,BumpyMatrix)
-importFrom(BumpyMatrix,undim)
+importFrom(BumpyMatrix,
+  BumpyMatrix,
+  undim
+)
 importFrom(IRanges,PartitioningByWidth)
-importFrom(Matrix,sparseMatrix)
-importFrom(Matrix,which)
+importFrom(Matrix,
+  sparseMatrix,
+  which
+)
 importFrom(S4Vectors,DataFrame)

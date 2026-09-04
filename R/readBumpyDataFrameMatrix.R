@@ -74,6 +74,7 @@ readBumpyDataFrameMatrix <- function(path, metadata, ...) {
 
 #' @export
 loadBumpyDataFrameMatrix <- function(assay.info, project) { 
+    .Deprecated(old = "loadBumpyDataFrameMatrix", new = "readBumpyDataFrameMatrix")
     concat.meta <- acquireMetadata(project, assay.info$bumpy_data_frame_matrix$concatenated$resource$path)
     concatenated <- .loadObject(concat.meta, project)
 
